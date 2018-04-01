@@ -1,0 +1,297 @@
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (15.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (14.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateContents (20180401042216)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "contents" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "page_link" varchar, "h1_tag" text, "h2_tag" text, "h3_tag" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180401042216"]]
+  [1m[35m (11.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-04-01 04:37:49.862460"], ["updated_at", "2018-04-01 04:37:49.862460"]]
+  [1m[35m (4.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/contents" for 127.0.0.1 at 2018-04-01 10:48:53 +0600
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ContentsController#create as */*
+  Parameters: {"page_link"=>"http://www.simplesite.com"}
+Completed 500 Internal Server Error in 64648ms (ActiveRecord: 0.0ms)
+
+
+  
+Errno::ENOENT (No such file or directory @ rb_sysopen - http://www.simplesite.com):
+  
+app/controllers/contents_controller.rb:11:in `initialize'
+app/controllers/contents_controller.rb:11:in `open'
+app/controllers/contents_controller.rb:11:in `create'
+Started POST "/contents" for 127.0.0.1 at 2018-04-01 10:50:14 +0600
+Processing by ContentsController#create as */*
+  Parameters: {"page_link"=>"http://www.cerebris.com/blog/2014/08/22/introducing-jsonapi-resources/"}
+Completed 500 Internal Server Error in 489203ms (ActiveRecord: 0.0ms)
+
+
+  
+Errno::ENOENT (No such file or directory @ rb_sysopen - http://www.cerebris.com/blog/2014/08/22/introducing-jsonapi-resources/):
+  
+app/controllers/contents_controller.rb:11:in `initialize'
+app/controllers/contents_controller.rb:11:in `open'
+app/controllers/contents_controller.rb:11:in `create'
+Started POST "/contents" for 127.0.0.1 at 2018-04-01 10:59:19 +0600
+Processing by ContentsController#create as */*
+  Parameters: {"page_link"=>"http://www.cerebris.com/blog/2014/08/22/introducing-jsonapi-resources/"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.6ms)[0m  [1m[32mINSERT INTO "contents" ("page_link", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["page_link", "http://www.cerebris.com/blog/2014/08/22/introducing-jsonapi-resources/"], ["created_at", "2018-04-01 05:01:12.037804"], ["updated_at", "2018-04-01 05:01:12.037804"]]
+  [1m[35m (5.1ms)[0m  [1m[36mcommit transaction[0m
+Completed 500 Internal Server Error in 102637ms (ActiveRecord: 9.1ms)
+
+
+  
+NoMethodError (undefined method `json_response' for #<ContentsController:0x0056433e0b6a58>):
+  
+app/controllers/contents_controller.rb:17:in `create'
+Started POST "/contents" for 127.0.0.1 at 2018-04-01 11:01:19 +0600
+Processing by ContentsController#create as */*
+  Parameters: {"page_link"=>"http://en.wikipedia.org/"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.9ms)[0m  [1m[32mINSERT INTO "contents" ("page_link", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["page_link", "http://en.wikipedia.org/"], ["created_at", "2018-04-01 05:03:06.198819"], ["updated_at", "2018-04-01 05:03:06.198819"]]
+  [1m[35m (8.6ms)[0m  [1m[36mcommit transaction[0m
+Completed 500 Internal Server Error in 107235ms (ActiveRecord: 10.6ms)
+
+
+  
+NoMethodError (undefined method `json_response' for #<ContentsController:0x0056433e638b70>):
+  
+app/controllers/contents_controller.rb:17:in `create'
+Started POST "/contents" for 127.0.0.1 at 2018-04-01 11:03:20 +0600
+Processing by ContentsController#create as */*
+  Parameters: {"page_link"=>"http://en.wikipedia.org/"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "contents" ("page_link", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["page_link", "http://en.wikipedia.org/"], ["created_at", "2018-04-01 05:06:46.881605"], ["updated_at", "2018-04-01 05:06:46.881605"]]
+  [1m[35m (6.6ms)[0m  [1m[36mcommit transaction[0m
+Completed 500 Internal Server Error in 206254ms (ActiveRecord: 11.4ms)
+
+
+  
+NoMethodError (undefined method `json_response' for #<ContentsController:0x0056433e3a5d68>):
+  
+app/controllers/contents_controller.rb:18:in `create'
+Started POST "/contents" for 127.0.0.1 at 2018-04-01 11:06:58 +0600
+Processing by ContentsController#create as */*
+  Parameters: {"page_link"=>"http://en.wikipedia.org/"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "contents" ("page_link", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["page_link", "http://en.wikipedia.org/"], ["created_at", "2018-04-01 05:07:41.644502"], ["updated_at", "2018-04-01 05:07:41.644502"]]
+  [1m[35m (4.5ms)[0m  [1m[36mcommit transaction[0m
+Completed 500 Internal Server Error in 42753ms (ActiveRecord: 5.3ms)
+
+
+  
+NoMethodError (undefined method `json_response' for #<ContentsController:0x0056433e210d40>):
+  
+app/controllers/contents_controller.rb:18:in `create'
+Started POST "/contents" for 127.0.0.1 at 2018-04-01 11:08:47 +0600
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ContentsController#create as */*
+  Parameters: {"page_link"=>"http://en.wikipedia.org/"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "contents" ("page_link", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["page_link", "http://en.wikipedia.org/"], ["created_at", "2018-04-01 05:10:08.644365"], ["updated_at", "2018-04-01 05:10:08.644365"]]
+  [1m[35m (6.3ms)[0m  [1m[36mcommit transaction[0m
+Completed 500 Internal Server Error in 80802ms (ActiveRecord: 7.7ms)
+
+
+  
+Started POST "/contents" for 127.0.0.1 at 2018-04-01 11:46:40 +0600
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ContentsController#create as */*
+  Parameters: {"page_link"=>"https://en.wikipedia.org/wiki/Main_Page"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "contents" ("page_link", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["page_link", "https://en.wikipedia.org/wiki/Main_Page"], ["created_at", "2018-04-01 05:50:50.852355"], ["updated_at", "2018-04-01 05:50:50.852355"]]
+  [1m[35m (5.2ms)[0m  [1m[36mcommit transaction[0m
+Completed 500 Internal Server Error in 250498ms (ActiveRecord: 8.0ms)
+
+
+  
+NoMethodError (undefined method `json_response' for #<ContentsController:0x005555f070c8f8>):
+  
+app/controllers/contents_controller.rb:18:in `create'
+Started POST "/contents" for 127.0.0.1 at 2018-04-01 11:50:58 +0600
+Processing by ContentsController#create as */*
+  Parameters: {"page_link"=>"https://en.wikipedia.org/wiki/Main_Page"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.3ms)[0m  [1m[32mINSERT INTO "contents" ("page_link", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["page_link", "https://en.wikipedia.org/wiki/Main_Page"], ["created_at", "2018-04-01 05:51:09.535473"], ["updated_at", "2018-04-01 05:51:09.535473"]]
+  [1m[35m (12.3ms)[0m  [1m[36mcommit transaction[0m
+Completed 500 Internal Server Error in 343994ms (ActiveRecord: 15.9ms)
+
+
+  
+NoMethodError (undefined method `json_response' for #<ContentsController:0x005555f0825758>):
+  
+app/controllers/contents_controller.rb:20:in `create'
+Started POST "/contents" for 127.0.0.1 at 2018-04-01 11:57:05 +0600
+Processing by ContentsController#create as */*
+  Parameters: {"page_link"=>"https://en.wikipedia.org/wiki/Main_Page"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO "contents" ("page_link", "h1_tag", "h2_tag", "h3_tag", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["page_link", "https://en.wikipedia.org/wiki/Main_Page"], ["h1_tag", "Main Page"], ["h2_tag", "From today's featured article;Did you know...;In the news;On this day...;Today's featured picture;Other areas of Wikipedia;Wikipedia's sister projects;Wikipedia languages;Navigation menu"], ["h3_tag", "Personal tools;Namespaces;\n\t\t\t\t\t\t\tVariants\n\t\t\t\t\t\t;Views;More;\n\t\t\t\t\t\t\tSearch\n\t\t\t\t\t\t;Navigation;Interaction;Tools;Print/export;In other projects;Languages"], ["created_at", "2018-04-01 05:57:05.895249"], ["updated_at", "2018-04-01 05:57:05.895249"]]
+  [1m[35m (11.1ms)[0m  [1m[36mcommit transaction[0m
+Completed 500 Internal Server Error in 245386ms (ActiveRecord: 19.7ms)
+
+
+  
+NoMethodError (undefined method `json_response' for #<ContentsController:0x005555f090ac90>):
+  
+app/controllers/contents_controller.rb:21:in `create'
+Started POST "/contents" for 127.0.0.1 at 2018-04-01 12:01:42 +0600
+Processing by ContentsController#create as */*
+  Parameters: {"page_link"=>"https://en.wikipedia.org/wiki/Main_Page"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "contents" ("page_link", "h1_tag", "h2_tag", "h3_tag", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["page_link", "https://en.wikipedia.org/wiki/Main_Page"], ["h1_tag", "Main Page"], ["h2_tag", "From today's featured article;Did you know...;In the news;On this day...;Today's featured picture;Other areas of Wikipedia;Wikipedia's sister projects;Wikipedia languages;Navigation menu"], ["h3_tag", "Personal tools;Namespaces;\n\t\t\t\t\t\t\tVariants\n\t\t\t\t\t\t;Views;More;\n\t\t\t\t\t\t\tSearch\n\t\t\t\t\t\t;Navigation;Interaction;Tools;Print/export;In other projects;Languages"], ["created_at", "2018-04-01 06:01:43.444130"], ["updated_at", "2018-04-01 06:01:43.444130"]]
+  [1m[35m (5.4ms)[0m  [1m[36mcommit transaction[0m
+Completed 500 Internal Server Error in 491ms (ActiveRecord: 8.2ms)
+
+
+  
+RuntimeError (Unknown source type #<Content id: 9, page_link: "https://en.wikipedia.org/wiki/Main_Page", h1_tag: "Main Page", h2_tag: "From today's featured article;Did you know...;In t...", h3_tag: "Personal tools;Namespaces;\n\t\t\t\t\t\t\tVariants\n\t\t\t\t\t\t;...", created_at: "2018-04-01 06:01:43", updated_at: "2018-04-01 06:01:43">):
+  
+app/controllers/contents_controller.rb:20:in `create'
+Started POST "/contents" for 127.0.0.1 at 2018-04-01 12:08:29 +0600
+Processing by ContentsController#create as */*
+  Parameters: {"page_link"=>"https://en.wikipedia.org/wiki/Main_Page"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "contents" ("page_link", "h1_tag", "h2_tag", "h3_tag", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["page_link", "https://en.wikipedia.org/wiki/Main_Page"], ["h1_tag", "Main Page"], ["h2_tag", "From today's featured article;Did you know...;In the news;On this day...;Today's featured picture;Other areas of Wikipedia;Wikipedia's sister projects;Wikipedia languages;Navigation menu"], ["h3_tag", "Personal tools;Namespaces;\n\t\t\t\t\t\t\tVariants\n\t\t\t\t\t\t;Views;More;\n\t\t\t\t\t\t\tSearch\n\t\t\t\t\t\t;Navigation;Interaction;Tools;Print/export;In other projects;Languages"], ["created_at", "2018-04-01 06:08:36.745161"], ["updated_at", "2018-04-01 06:08:36.745161"]]
+  [1m[35m (6.4ms)[0m  [1m[36mcommit transaction[0m
+Completed 500 Internal Server Error in 7328ms (ActiveRecord: 7.7ms)
+
+
+  
+ActionView::MissingTemplate (Missing template contents/create, jsonapi/resource/create with {:locale=>[:en], :formats=>[:html, :text, :js, :css, :ics, :csv, :vcf, :png, :jpeg, :gif, :bmp, :tiff, :svg, :mpeg, :xml, :rss, :atom, :yaml, :multipart_form, :url_encoded_form, :json, :pdf, :zip, :gzip, :api_json], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby]}. Searched in:
+  * "/projects/data-lab/remote-sample-api/app/views"
+):
+  
+app/controllers/contents_controller.rb:20:in `create'
+Started POST "/contents" for 127.0.0.1 at 2018-04-01 12:28:08 +0600
+Processing by ContentsController#create as */*
+  Parameters: {"page_link"=>"https://en.wikipedia.org/wiki/Main_Page"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "contents" ("page_link", "h1_tag", "h2_tag", "h3_tag", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["page_link", "https://en.wikipedia.org/wiki/Main_Page"], ["h1_tag", "Main Page"], ["h2_tag", "From today's featured article;Did you know...;In the news;On this day...;Today's featured picture;Other areas of Wikipedia;Wikipedia's sister projects;Wikipedia languages;Navigation menu"], ["h3_tag", "Personal tools;Namespaces;\n\t\t\t\t\t\t\tVariants\n\t\t\t\t\t\t;Views;More;\n\t\t\t\t\t\t\tSearch\n\t\t\t\t\t\t;Navigation;Interaction;Tools;Print/export;In other projects;Languages"], ["created_at", "2018-04-01 06:28:09.011447"], ["updated_at", "2018-04-01 06:28:09.011447"]]
+  [1m[35m (12.2ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 729ms (Views: 0.2ms | ActiveRecord: 14.1ms)
+
+
+Started POST "/contents" for 127.0.0.1 at 2018-04-01 12:30:22 +0600
+Processing by ContentsController#create as */*
+  Parameters: {"page_link"=>"https://en.wikipedi"}
+Completed 500 Internal Server Error in 222ms
+
+
+  
+SocketError (Failed to open TCP connection to en.wikipedi:443 (getaddrinfo: Name or service not known)):
+  
+app/controllers/contents_controller.rb:14:in `create'
+Started POST "/contents" for 127.0.0.1 at 2018-04-01 12:30:54 +0600
+Processing by ContentsController#create as */*
+  Parameters: {"page_link"=>"https://en.wikipedi"}
+Completed 500 Internal Server Error in 433149ms
+
+
+  
+SocketError (Failed to open TCP connection to en.wikipedi:443 (getaddrinfo: Name or service not known)):
+  
+app/controllers/contents_controller.rb:14:in `create'
+Started POST "/contents" for 127.0.0.1 at 2018-04-01 12:38:11 +0600
+Processing by ContentsController#create as */*
+  Parameters: {"page_link"=>"https://en.wikipedi"}
+Completed 500 Internal Server Error in 1072403ms
+
+
+  
+SocketError (Failed to open TCP connection to en.wikipedi:443 (getaddrinfo: Name or service not known)):
+  
+app/controllers/contents_controller.rb:15:in `create'
+Started POST "/contents" for 127.0.0.1 at 2018-04-01 12:56:10 +0600
+Processing by ContentsController#create as */*
+  Parameters: {"page_link"=>"https://en.wikipedi"}
+Completed 200 OK in 1ms (Views: 0.2ms)
+
+
+Started POST "/contents" for 127.0.0.1 at 2018-04-01 12:56:57 +0600
+Processing by ContentsController#create as */*
+  Parameters: {"page_link"=>"https://en.wikipedi"}
+Completed 200 OK in 1ms (Views: 0.2ms)
+
+
+Started GET "/contents" for 127.0.0.1 at 2018-04-01 12:58:04 +0600
+Processing by ContentsController#index as */*
+  [1m[36mContent Load (0.1ms)[0m  [1m[34mSELECT  "contents".* FROM "contents" LIMIT ?[0m  [["LIMIT", 11]]
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 0.4ms)
+
+
+  
+  [1m[36mCACHE Content Load (0.0ms)[0m  [1m[34mSELECT  "contents".* FROM "contents" LIMIT ?[0m  [["LIMIT", 11]]
+NoMethodError (undefined method `id' for #<Content::ActiveRecord_Relation:0x005555f09bc3c8>
+Did you mean?  ids):
+  
+app/controllers/contents_controller.rb:9:in `index'
+  [1m[36mCACHE Content Load (0.0ms)[0m  [1m[34mSELECT  "contents".* FROM "contents" LIMIT ?[0m  [["LIMIT", 11]]
+Started GET "/contents" for 127.0.0.1 at 2018-04-01 13:00:00 +0600
+Processing by ContentsController#index as */*
+  [1m[36mContent Load (0.2ms)[0m  [1m[34mSELECT  "contents".* FROM "contents" LIMIT ?[0m  [["LIMIT", 11]]
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms)
+
+
+  
+  [1m[36mCACHE Content Load (0.0ms)[0m  [1m[34mSELECT  "contents".* FROM "contents" LIMIT ?[0m  [["LIMIT", 11]]
+NoMethodError (undefined method `id' for #<Content::ActiveRecord_Relation:0x005555f0981de0>
+Did you mean?  ids):
+  
+app/controllers/contents_controller.rb:9:in `index'
+  [1m[36mCACHE Content Load (0.0ms)[0m  [1m[34mSELECT  "contents".* FROM "contents" LIMIT ?[0m  [["LIMIT", 11]]
+Started GET "/contents" for 127.0.0.1 at 2018-04-01 13:00:03 +0600
+Processing by ContentsController#index as */*
+  [1m[36mContent Load (0.2ms)[0m  [1m[34mSELECT  "contents".* FROM "contents" LIMIT ?[0m  [["LIMIT", 11]]
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.0ms)
+
+
+  
+  [1m[36mCACHE Content Load (0.0ms)[0m  [1m[34mSELECT  "contents".* FROM "contents" LIMIT ?[0m  [["LIMIT", 11]]
+NoMethodError (undefined method `id' for #<Content::ActiveRecord_Relation:0x005555f04198f8>
+Did you mean?  ids):
+  
+app/controllers/contents_controller.rb:9:in `index'
+  [1m[36mCACHE Content Load (0.0ms)[0m  [1m[34mSELECT  "contents".* FROM "contents" LIMIT ?[0m  [["LIMIT", 11]]
+Started GET "/contents" for 127.0.0.1 at 2018-04-01 13:01:08 +0600
+Processing by ContentsController#index as */*
+  [1m[36mContent Load (0.2ms)[0m  [1m[34mSELECT  "contents".* FROM "contents" LIMIT ?[0m  [["LIMIT", 11]]
+Completed 500 Internal Server Error in 81101ms (ActiveRecord: 0.6ms)
+
+
+  
+  [1m[36mCACHE Content Load (0.0ms)[0m  [1m[34mSELECT  "contents".* FROM "contents" LIMIT ?[0m  [["LIMIT", 11]]
+NoMethodError (undefined method `id' for #<Content::ActiveRecord_Relation:0x005555ef0364a8>
+Did you mean?  ids):
+  
+app/controllers/contents_controller.rb:9:in `index'
+  [1m[36mCACHE Content Load (0.0ms)[0m  [1m[34mSELECT  "contents".* FROM "contents" LIMIT ?[0m  [["LIMIT", 11]]
+Started GET "/contents" for 127.0.0.1 at 2018-04-01 13:05:22 +0600
+Processing by ContentsController#index as */*
+  [1m[36mContent Load (0.2ms)[0m  [1m[34mSELECT "contents".* FROM "contents"[0m
+Completed 200 OK in 11ms (Views: 0.7ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/contents" for 127.0.0.1 at 2018-04-01 13:06:37 +0600
+Processing by ContentsController#create as */*
+  Parameters: {"page_link"=>"https://docs.google.com/forms/d/e/1FAIpQLSdGlO8xgCVYIXDRs2L5TtGqQc0iwfCIS2pR_j6EdAfEzZaE4A/viewform"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "contents" ("page_link", "h1_tag", "h2_tag", "h3_tag", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["page_link", "https://docs.google.com/forms/d/e/1FAIpQLSdGlO8xgCVYIXDRs2L5TtGqQc0iwfCIS2pR_j6EdAfEzZaE4A/viewform"], ["h1_tag", ""], ["h2_tag", ""], ["h3_tag", ""], ["created_at", "2018-04-01 07:06:38.900069"], ["updated_at", "2018-04-01 07:06:38.900069"]]
+  [1m[35m (7.1ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 1782ms (Views: 0.2ms | ActiveRecord: 7.9ms)
+
+
+Started POST "/contents" for 127.0.0.1 at 2018-04-01 13:07:15 +0600
+Processing by ContentsController#create as */*
+  Parameters: {"page_link"=>"http://rubylearning.com/satishtalim/ruby_exceptions.html"}
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (2.1ms)[0m  [1m[32mINSERT INTO "contents" ("page_link", "h1_tag", "h2_tag", "h3_tag", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["page_link", "http://rubylearning.com/satishtalim/ruby_exceptions.html"], ["h1_tag", "RubyLearning.com;Ruby Exceptions"], ["h2_tag", "Helping Ruby Programmers become Awesome!"], ["h3_tag", "Raising An Exception;Handling an Exception;Validation example"], ["created_at", "2018-04-01 07:07:17.109195"], ["updated_at", "2018-04-01 07:07:17.109195"]]
+  [1m[35m (12.6ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 1281ms (Views: 0.7ms | ActiveRecord: 15.0ms)
+
+
